@@ -1,4 +1,4 @@
-// version 0.2
+// version 0.2.1
 export class GestorInventarioCocina {
 
     constructor() {
@@ -113,6 +113,32 @@ export class GestorInventarioCocina {
             reject(`[Error en Cocina]: ${errorAleatorio}`);
         });
     }
+
+    // Preparar cafe con Promesa y descuento de stock
+    prepararCafe(idProducto, cantidad = 1) {
+        return new Promise((resolve, reject) => {
+            this.verificarIngredientes(idProducto, cantidad)
+                .then(producto => {
+                    if (producto.categoria.toLowerCase() !== "bebida") {
+                        return reject(`[Error]: El producto "${producto.nombre}" no es una bebida/cafe.`);
+                    }
+
+                    console.log(`Iniciando la preparacion de ${cantidad}x ${producto.nombre}...`);
+
+                    setTimeout(() => {
+                        producto.stock -= cantidad;
+
+                        resolve({
+                            mensaje: `El producto ${producto.nombre} esta listo!`,
+                            producto: producto.nombre,
+                            cantidadServida: cantidad,
+                            stockRestante: producto.stock
+                        });
+                    }, 2000);
+                })
+                .catch(err => reject(err));
+        });
+    }
 }
 
 // Exportacion independiente del metodo de bus
@@ -136,3 +162,4 @@ cocina.agregarProducto(7, "Panini de Pollo", "Alimento", 135, 20);
 cocina.agregarProducto(8, "Bagel de salmon y queso crema", "Alimento", 58, 20);
 cocina.agregarProducto(9, "Muffin de arandanos", "Alimento", 95, 20);
 cocina.agregarProducto(10, "Cheesecake", "Alimento", 85, 20);
+
