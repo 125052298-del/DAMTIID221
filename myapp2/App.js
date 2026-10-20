@@ -23,9 +23,9 @@ export default function App() {
       */}
 
       <Text>----------------------------------------------</Text>
-      <Perfil nombre="Juan" carrera="TIID" materia="APPMOVIL" cuatri="4"/>
-      <Perfil nombre="Ramon" carrera="TIID" materia="APPMOVIL" cuatri="4"/>
-      <Perfil nombre="papu" carrera="TIID" materia="APPMOVIL" cuatri="4"/>
+      <Perfil style={styles.targeta1} nombre="Juan" carrera="TIID" materia="APPMOVIL" cuatri="4"/>
+      <Perfil style={styles.targeta2} nombre="Ramon" carrera="TIID" materia="APPMOVIL" cuatri="4"/>
+      <Perfil style={styles.targeta3} nombre="papu" carrera="TIID" materia="APPMOVIL" cuatri="4"/>
       <StatusBar style="auto" />
     </View>
   );
@@ -34,8 +34,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection:'column',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  targeta1:{backgroundColor:'#FADADD',padding:10,},
+  targeta2:{backgroundColor:'#D8F3DC',padding:10,},
+  targeta3:{backgroundColor:'#DDEBFF',padding:10,},
 });
