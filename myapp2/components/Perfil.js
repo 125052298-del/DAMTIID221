@@ -22,7 +22,9 @@ const estilos = StyleSheet.create({
     fontStyle:'italic',
   },
   targetas:{
-    borderWidth:3,
+    backgroundColor:'#F3F4F6',
+    borderWidth:2,
+    borderColor:'#D1D5DB',
     borderRadius:12,
     padding:15,
     margin:10,
