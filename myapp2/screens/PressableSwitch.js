@@ -1,95 +1,79 @@
+/* 1. Zona de importaciones */
+import { StyleSheet, View, Text, Pressable, Switch } from 'react-native';
 import { useState } from 'react';
-import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
 
-export default function PressableSwitch({ onBack }) {
-  const [mensaje, setMensaje] = useState('Presiona el botón');
+/* 2. Zona render o Main */
+
+export default function PressableScreen() {
+  const [mensaje, setMensaje] = useState('Presiona el boton');
   const [activado, setActivado] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Práctica Pressable y Switch</Text>
+      <Text style={styles.titulo}>Pressable</Text>
 
-      <Text style={styles.mensaje}>{mensaje}</Text>
+      <Text>{mensaje}</Text>
+
       <Pressable
-        accessibilityRole="button"
-        onPress={() => setMensaje('¡Botón presionado!')}
-        onLongPress={() => setMensaje('¡Mantienes presionado el botón!')}
+        onPress={() => setMensaje('Boton Presionado bro')}
+        onPressIn={() => { console.log('inicio de pulsacion bro') }}
+        onPressOut={() => { console.log('Fin de la pulsacion bro') }}
+        onLongPress={() => setMensaje('Pulsacion prolongada bro')}
+        disabled={false}
         style={({ pressed }) => [
           styles.boton,
-          pressed && styles.botonPresionado,
+          pressed && styles.botonPresionado
         ]}
       >
-        <Text style={styles.textoBoton}>Presióname</Text>
+        <Text style={styles.textoBoton}>Presioname</Text>
       </Pressable>
+      <View style={styles.separador}/>
+        <Text style={styles.titulo}>Switch</Text>
+        <Text>Estado: {activado ? 'Activado' : 'Desactivado'}</Text>
 
-      <View style={styles.filaSwitch}>
-        <Text style={styles.textoSwitch}>
-          Switch: {activado ? 'Activado' : 'Desactivado'}
-        </Text>
         <Switch
-          accessibilityLabel="Activar o desactivar switch"
-          value={activado}
-          onValueChange={setActivado}
+        value={activado}
+        onValueChange={setActivado}
+        trackColor={{false: '#ea2424', true: '#319b80'}}
+        thumbColor={activado ? '#ffffff' : '#ea2424'} 
         />
-      </View>
-
-      <Pressable
-        accessibilityRole="button"
-        onPress={onBack}
-        style={styles.botonVolver}
-      >
-        <Text style={styles.textoBoton}>Volver al menú</Text>
-      </Pressable>
     </View>
   );
 }
 
+
+/* 3. Zona de estilos y posicionamientos */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4F6FB',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 24,
-    gap: 16,
+    padding: 20,
+    backgroundColor: 'white',
   },
   titulo: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: '#1E293B',
-    textAlign: 'center',
-  },
-  mensaje: {
-    fontSize: 16,
-    color: '#334155',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 15,
   },
   boton: {
-    backgroundColor: '#2563EB',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 8,
+    backgroundColor: '#319b80',
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 15,
   },
   botonPresionado: {
-    backgroundColor: '#1D4ED8',
-    opacity: 0.8,
+    backgroundColor: '#1e6655',
   },
   textoBoton: {
-    color: '#FFFFFF',
-    fontWeight: '600',
-  },
-  filaSwitch: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  textoSwitch: {
+    color: 'white',
     fontSize: 16,
-    color: '#334155',
   },
-  botonVolver: {
-    backgroundColor: '#475569',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 8,
+  separador: {
+    height: 2,
+    backgroundColor: '#cccccc',
+    width: '90%',
+    marginVertical: 35,
   },
 });
