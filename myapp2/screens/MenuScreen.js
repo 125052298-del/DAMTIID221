@@ -1,7 +1,8 @@
-import { StyleSheet, View, Text, Button, Pressable } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import { useState } from 'react';
 import SafeScreen from './SafeScreen.js';
 import TarjetasScreen from './TarjetasScreen.js';
+import PressableSwitch from './PressableSwitch.js';
 
 export default function MenuScreen() {
     const [screen, setScreen] = useState('menu');
@@ -11,18 +12,7 @@ export default function MenuScreen() {
         case 'safe':
             return <SafeScreen onBack={() => setScreen('menu')} />;
         case 'pressable':
-            return (
-                <View style={styles.container}>
-                    <Text>Practica Pressable</Text>
-                    <Pressable
-                        accessibilityRole="button"
-                        onPress={() => setScreen('menu')}
-                        style={styles.pressable}
-                    >
-                        <Text style={styles.pressableText}>Volver al menú</Text>
-                    </Pressable>
-                </View>
-            );
+            return <PressableSwitch onBack={() => setScreen('menu')} />;
         case 'menu':
         default:
             return (
@@ -30,7 +20,7 @@ export default function MenuScreen() {
                     <Text>Menú de prácticas</Text>
                     <Button title="Práctica: Tarjetas" onPress={() => setScreen('tarjetas')} />
                     <Button title="Práctica: SafeAreaView" onPress={() => setScreen('safe')} />
-                    <Button title="Práctica: Pressable" onPress={() => setScreen('pressable')} />
+                    <Button title="Práctica: Pressable y Switch" onPress={() => setScreen('pressable')} />
                 </View>
             );
     }
@@ -45,15 +35,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         gap: 12,
-    },
-    pressable: {
-        backgroundColor: '#2563EB',
-        paddingHorizontal: 16,
-        paddingVertical: 10,
-        borderRadius: 8,
-    },
-    pressableText: {
-        color: '#FFFFFF',
-        fontWeight: '600',
     },
 });
