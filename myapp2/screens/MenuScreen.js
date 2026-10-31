@@ -3,6 +3,7 @@ import { useState } from 'react';
 import SafeScreen from './SafeScreen.js';
 import TarjetasScreen from './TarjetasScreen.js';
 import PressableSwitch from './PressableSwitch.js';
+import TextInputScreen from './TextImput&Alert.js';
 
 export default function MenuScreen() {
     const [screen, setScreen] = useState('menu');
@@ -13,6 +14,8 @@ export default function MenuScreen() {
             return <SafeScreen onBack={() => setScreen('menu')} />;
         case 'pressable':
             return <PressableSwitch onBack={() => setScreen('menu')} />;
+        case 'textinput-alert':
+            return <TextInputScreen onBack={() => setScreen('menu')} />;
         case 'menu':
         default:
             return (
@@ -21,6 +24,7 @@ export default function MenuScreen() {
                     <Button title="Práctica: Tarjetas" onPress={() => setScreen('tarjetas')} />
                     <Button title="Práctica: SafeAreaView" onPress={() => setScreen('safe')} />
                     <Button title="Práctica: Pressable y Switch" onPress={() => setScreen('pressable')} />
+                    <Button title="Práctica: TextInput & Alert" onPress={() => setScreen('textinput-alert')} />
                 </View>
             );
     }
