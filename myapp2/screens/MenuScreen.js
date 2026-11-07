@@ -6,10 +6,13 @@ import PressableSwitch from './PressableSwitch.js';
 import TextInputScreen from './TextImput&Alert.js';
 import SplashScreen from './ImageBackgroung&SlapshScreen.js';
 import ListaScreen from './PFlatList&SectionList.js';
+import ActivityIndicatorKeyboardScreen from './ActivityIndicator, KeyboardAvoidingView.js.js';
 
 export default function MenuScreen() {
     const [screen, setScreen] = useState('menu');
     switch (screen) {
+        case 'activity-indicator-keyboard':
+            return <ActivityIndicatorKeyboardScreen onBack={() => setScreen('menu')} />;
         case 'tarjetas':
             return <TarjetasScreen onBack={() => setScreen('menu')} />;
         case 'safe':
@@ -33,6 +36,7 @@ export default function MenuScreen() {
                     <Button title="Práctica: TextInput & Alert" onPress={() => setScreen('textinput-alert')} />
                     <Button title="Práctica: ImageBackground & SplashScreen" onPress={() => setScreen('ImageBackgroung&SlapshScreen')} />
                     <Button title="Práctica: PFlatList&SectionList" onPress={() => setScreen('PFlatList&SectionList')} />
+                    <Button title="Práctica: ActivityIndicator & KeyboardAvoidingView" onPress={() => setScreen('activity-indicator-keyboard')} />
                 </View>
             );
     }
