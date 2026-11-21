@@ -1,17 +1,6 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
 import AltaUsuariosScreen from './screens/AltaUsuariosScreen';
-import ConsultaUsuariosScreen from './screens/ConsultaUsuariosScreen';
-
-
 
 export default function App() {
-
-  return(
-
-    <AltaUsuariosScreen></AltaUsuariosScreen>
-
-  );
-
+  return <AltaUsuariosScreen />;
 }
-

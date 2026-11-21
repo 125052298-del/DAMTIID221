@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import {View,SafeAreaView,Text,TextInput,Pressable,StyleSheet,} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
 
-export default function App() {
+export default function AltaUsuariosScreen() {
   const [nombre, setNombre] = useState('');
   const [edad, setEdad] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
-
       <View style={styles.card}>
-
         <Text style={styles.titulo}>
           Registro de Usuarios
         </Text>
@@ -34,9 +39,7 @@ export default function App() {
             Agregar Usuario
           </Text>
         </Pressable>
-
       </View>
-
     </SafeAreaView>
   );
 }

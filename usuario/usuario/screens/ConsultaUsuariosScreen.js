@@ -1,35 +1,19 @@
 import React from 'react';
-import {SafeAreaView,View,Text,FlatList,StyleSheet,
-} from 'react-native';
+import { SafeAreaView, View, Text, FlatList, StyleSheet } from 'react-native';
 
-export default function ConsultaUsuariosScreen() {
-
-  const usuarios = [
-    { id: '1', nombre: 'Isay Guerra', edad: 22 },
-    { id: '2', nombre: 'Ana López', edad: 19 },
-    { id: '3', nombre: 'Carlos Gonzalez', edad: 25 },
-    { id: '4', nombre: 'Bjork Guerra', edad: 21 },
-    { id: '5', nombre: 'Luisa Martínez', edad: 28 },
-  ];
-
+export default function ConsultaUsuariosScreen({ usuarios }) {
   const renderTarjeta = ({ item }) => (
     <View style={styles.card}>
-
       <Text style={styles.nombre}>{item.nombre}</Text>
-
-      <View style={styles.linea}></View>
-
+      <View style={styles.linea} />
       <Text style={styles.info}>
         Edad: {item.edad} años
       </Text>
-
     </View>
   );
 
   return (
-
     <SafeAreaView style={styles.container}>
-
       <Text style={styles.titulo}>
         Lista de Usuarios
       </Text>
@@ -40,11 +24,14 @@ export default function ConsultaUsuariosScreen() {
         renderItem={renderTarjeta}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 20 }}
+        ListEmptyComponent={
+          <Text style={styles.vacio}>
+            Aún no hay usuarios registrados.
+          </Text>
+        }
       />
-
     </SafeAreaView>
   );
-  
 }
 
 const styles = StyleSheet.create({
@@ -96,4 +83,10 @@ const styles = StyleSheet.create({
     color: '#4B5563',
   },
 
+  vacio: {
+    color: '#6B7280',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 24,
+  },
 });
