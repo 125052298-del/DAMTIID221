@@ -1,15 +1,41 @@
 import React from 'react';
-import { SafeAreaView, View, Text, FlatList, StyleSheet } from 'react-native';
+import { SafeAreaView, View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 
-export default function ConsultaUsuariosScreen({ usuarios }) {
+const usuariosIniciales = [
+  { id: '1', nombre: 'Ana García', edad: 25 },
+  { id: '2', nombre: 'Carlos López', edad: 30 },
+];
+
+export default function ConsultaUsuariosScreen({ usuarios = usuariosIniciales } = {}) {
+  const { eliminarId } = useLocalSearchParams();
+  const router = useRouter();
+  const usuariosVisibles = eliminarId
+    ? usuarios.filter((usuario) => String(usuario.id) !== String(eliminarId))
+    : usuarios;
+
   const renderTarjeta = ({ item }) => (
-    <View style={styles.card}>
+    <Pressable
+      style={({ pressed }) => [styles.card, pressed && styles.cardPresionada]}
+      accessibilityRole="button"
+      accessibilityLabel={`Ver detalles de ${item.nombre}`}
+      onPress={() =>
+        router.push({
+          pathname: '/detalle',
+          params: {
+            id: item.id,
+            nombre: item.nombre,
+            edad: String(item.edad),
+          },
+        })
+      }
+    >
       <Text style={styles.nombre}>{item.nombre}</Text>
       <View style={styles.linea} />
       <Text style={styles.info}>
         Edad: {item.edad} años
       </Text>
-    </View>
+    </Pressable>
   );
 
   return (
@@ -19,7 +45,7 @@ export default function ConsultaUsuariosScreen({ usuarios }) {
       </Text>
 
       <FlatList
-        data={usuarios}
+        data={usuariosVisibles}
         keyExtractor={(item) => item.id}
         renderItem={renderTarjeta}
         showsVerticalScrollIndicator={false}
@@ -64,6 +90,10 @@ const styles = StyleSheet.create({
       width: 0,
       height: 3,
     },
+  },
+
+  cardPresionada: {
+    opacity: 0.75,
   },
 
   nombre: {
