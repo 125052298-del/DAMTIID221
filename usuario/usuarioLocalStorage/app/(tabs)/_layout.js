@@ -20,7 +20,7 @@ export default function TabsLayout() {
         options={{
           title: 'Listado',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="list-outline" size={size} color={color} />
+            <Ionicons name="people-outline" size={size} color={color} />
           ),
         }}
       />
